@@ -1,11 +1,10 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
-type Button = {
-  children: ReactNode;
+type Button = JSX.IntrinsicElements["button"] & {
   color?: "primary" | "white";
 };
 
-export const ActionButton: FC<Button> = ({ children, color = "white" }) => {
+export const ActionButton: FC<Button> = ({ children, color = "white", ...props }) => {
   const borderColor = (() => {
     switch (color) {
       case "primary":
@@ -16,7 +15,7 @@ export const ActionButton: FC<Button> = ({ children, color = "white" }) => {
   })();
 
   return (
-    <button className={`px-4 py-2 rounded-md bg-${color} border border-${borderColor}`}>
+    <button className={`px-4 py-2 font-semibold rounded-md bg-${color} border border-${borderColor}`} {...props}>
       {children}
     </button>
   );
