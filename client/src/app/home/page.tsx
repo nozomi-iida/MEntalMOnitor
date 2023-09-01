@@ -2,20 +2,13 @@ import { Header } from "@/components/header";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { AuthLayout } from "@/components/layout/authLayout";
 
 const HomePage = async () => {
-  const supabase = createServerComponentClient({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  if (!session) {
-    redirect("/sign_in");
-  }
-
   return (
-    <div>
+    <AuthLayout>
       <Header />
-    </div>
+    </AuthLayout>
   );
 };
 
