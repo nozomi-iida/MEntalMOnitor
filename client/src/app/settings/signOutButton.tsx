@@ -1,5 +1,5 @@
 "use client";
-import { DefaultText } from "@/components/text";
+import { Button } from "@/components/ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 
@@ -11,9 +11,9 @@ export const SignOutButton = () => {
     router.refresh();
   };
   return (
-    // TODO: change to button
-    <DefaultText bold color="danger" onClick={onClickSignOut}>
-      ログアウト
-    </DefaultText>
+    // TODO: make it red
+    <Button variant="ghost" onClick={onClickSignOut}>
+      Sign Out
+    </Button>
   );
 };
