@@ -20,6 +20,7 @@ const config: Config = {
         primary: "#F894C6",
         bg: "#FDFDFF",
         border: "#ECECEC",
+        danger: "#F87171",
       },
     },
   },

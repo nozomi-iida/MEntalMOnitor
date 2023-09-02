@@ -10,7 +10,6 @@ const SignInPage = async () => {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-  console.log(session);
   if (session) {
     redirect("/home");
   }
