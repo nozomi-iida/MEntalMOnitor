@@ -1,5 +1,5 @@
 "use client";
-import {  AiFillHome, AiFillSetting } from "react-icons/ai";
+import { AiFillHome, AiFillSetting } from "react-icons/ai";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -9,7 +9,7 @@ export const Footer = () => {
   const pathname = usePathname();
 
   return (
-    <div className="flex w-full justify-between border-t-border border-t">
+    <footer className="flex w-full justify-between border-t-border border-t px-4 py-2">
       <Button
         variant="ghost"
         size="icon"
@@ -37,6 +37,6 @@ export const Footer = () => {
           <AiFillSetting className="w-8 h-8" />
         </Link>
       </Button>
-    </div>
+    </footer>
   );
 };
