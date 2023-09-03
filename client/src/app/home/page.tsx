@@ -1,12 +1,14 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
 import { AuthLayout } from "@/components/layout/authLayout";
+import { PageLayout } from "@/components/pageLayout";
 
 const HomePage = async () => {
   return (
     <AuthLayout>
-      <Header />
-      <Footer />
+      <PageLayout>
+        <PageLayout.Header />
+        <PageLayout.Content></PageLayout.Content>
+        <PageLayout.Footer />
+      </PageLayout>
     </AuthLayout>
   );
 };
