@@ -29,6 +29,7 @@ const config: Config = {
         bg: "#FDFDFF",
         border: "#ECECEC",
         danger: "#F87171",
+        pingBg: "#FFE0E5",
       },
       keyframes: {
         "accordion-down": {
