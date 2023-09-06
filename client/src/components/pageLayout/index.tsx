@@ -12,22 +12,15 @@ type PageLayoutSubComponent = {
   Footer: FC;
 };
 
-export const PageLayout: FC<PageLayoutProps> & PageLayoutSubComponent = ({ children }) => {
-  return (
-    <div className="flex flex-col min-h-screen">
-      {children}
-    </div>
-  )
-}
+export const PageLayout: FC<PageLayoutProps> & PageLayoutSubComponent = ({
+  children,
+}) => {
+  return <div className="flex flex-col min-h-screen">{children}</div>;
+};
 
 const Content: FC<PageLayoutProps> = ({ children }) => {
-  return (
-    <main className="flex-auto px-2">
-      {children}
-    </main>
-  )
-}
-
+  return <main className="flex-auto px-2 py-4">{children}</main>;
+};
 
 PageLayout.Header = Header;
 PageLayout.Content = Content;
