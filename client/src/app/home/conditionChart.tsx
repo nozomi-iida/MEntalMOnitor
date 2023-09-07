@@ -15,6 +15,13 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 type Condition = {
   point: number;
@@ -35,6 +42,7 @@ enum Period {
 
 export const ConditionChrt = () => {
   const [period, setPeriod] = useState<Period>(Period.Day);
+  const [date, setDate] = useState<Date>(new Date());
   const xTickFormatter = (date: string) => {
     switch (period) {
       case Period.Day:
@@ -74,7 +82,28 @@ export const ConditionChrt = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-end">
+      <div className="flex justify-end gap-4">
+        <div className="flex items-center gap-2">
+          <p>From: </p>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className="justify-start text-left font-normal w-auto"
+              >
+                {date ? dayjs(date).format("LL") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={(val) => val && setDate(val)}
+                initialFocus
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
         <Select onValueChange={(value: Period) => setPeriod(value)}>
           <SelectTrigger className="w-auto">{period}</SelectTrigger>
           <SelectContent>
@@ -87,7 +116,7 @@ export const ConditionChrt = () => {
         </Select>
       </div>
       <ResponsiveContainer width="100%" height={200}>
-        <LineChart data={data} margin={{ left: -20, right: 20 }}>
+        <LineChart data={data} margin={{ left: -24, right: 24 }}>
           <Line type="monotone" dataKey="point" stroke="#F894C6" />
           <XAxis dataKey="createdAt" tickFormatter={xTickFormatter} />
           <YAxis ticks={[0, 25, 50, 75, 100]} tickFormatter={formatter} />
