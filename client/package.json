@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typegen": "supabase gen types typescript --db-url postgresql://postgres:postgres@localhost:54322/postgres --schema public > ./lib/schema.gen.ts",
+    "typegen": "supabase gen types typescript --db-url postgresql://postgres:postgres@localhost:54322/postgres --schema public > ./src/lib/schema.gen.ts",
     "pathpida": "pathpida --enableStatic --ignorepath .gitignore --output ./src/lib/pathpida"
   },
   "dependencies": {
