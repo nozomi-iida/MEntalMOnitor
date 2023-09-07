@@ -4,7 +4,7 @@ create table
     created_at timestamp with time zone not null default now(),
     updated_at timestamp with time zone not null default now(),
     comment text not null default ''::text CHECK (length(comment) <= 200),
-    points integer not null default 0,
+    point integer not null default 0,
     user_id uuid REFERENCES users not NULL
   ) tablespace pg_default;
 
