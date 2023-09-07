@@ -1,0 +1,18 @@
+{
+  "name": "supabase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "supabase start",
+    "stop": "supabase stop",
+    "new": "supabase migration new $1",
+    "reset": "supabase db reset"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "supabase": "^1.88.0"
+  }
+}
