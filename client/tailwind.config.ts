@@ -30,6 +30,7 @@ const config: Config = {
         border: "#ECECEC",
         danger: "#F87171",
         pingBg: "#FFE0E5",
+        subInfo: "#D0D0D0"
       },
       keyframes: {
         "accordion-down": {

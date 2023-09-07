@@ -8,13 +8,13 @@ import { cookies } from "next/headers";
 
 const HomePage = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
-  const {data} = await supabase.from("conditions").select();
+  const { data } = await supabase.from("conditions").select();
   return (
     <AuthLayout>
       <PageLayout>
         <PageLayout.Header />
         <PageLayout.Content>
-          <ConditionChrt conditions={data} />
+          <ConditionChrt conditions={data ?? []} />
         </PageLayout.Content>
         <AddConditionForm />
         <PageLayout.Footer />
