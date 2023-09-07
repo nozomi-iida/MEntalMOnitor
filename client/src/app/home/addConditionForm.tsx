@@ -3,7 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Database } from "@/lib/schema.gen";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import {  useState } from "react";
+import { useState } from "react";
+import { revalidatePath } from 'next/cache'
+import { pagesPath } from "@/lib/pathpida/$path";
 
 export const AddConditionForm = () => {
   const supabase = createClientComponentClient<Database>();
@@ -24,6 +26,7 @@ export const AddConditionForm = () => {
         throw new Error("Invalid emoji");
     }
   };
+  // TODO: refetch data after insert
   const onSubmit = async (emoji: string) => {
     const {
       data: { user },
@@ -40,7 +43,7 @@ export const AddConditionForm = () => {
     setComment("");
   };
   return (
-    <div className="bg-pingBg px-2 pt-4 pb-2 flex flex-col gap-2">
+    <div className="bg-pingBg px-2 pt-4 pb-2 flex flex-col gap-2 sticky bottom-[57px] z-10">
       <Textarea
         placeholder="(Optional) How are you feeling?"
         value={comment}
