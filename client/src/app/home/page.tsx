@@ -21,7 +21,7 @@ const HomePage = async () => {
     .from("conditions")
     .select()
     .gte("created_at", todayStart.toISOString())
-    .lte("created_at", todayEnd.toISOString())
+    .lte("created_at", todayEnd.toISOString());
   const { data: timelineData } = await supabase
     .from("conditions")
     .select()
@@ -36,18 +36,26 @@ const HomePage = async () => {
             <div className="flex flex-col gap-4">
               <SectionTitle>Timeline</SectionTitle>
               <div className="flex flex-col gap-2">
-                {timelineData?.map((condition) => (
-                  <div
-                    key={condition.id}
-                    className="inline-flex gap-2 items-end"
-                  >
-                    <div className="px-4 py-1 rounded-lg bg-white shadow-md shadow-primary inline-block">
-                      <p>{point2emoji(condition.point)}</p>
-                      <p>{condition.comment}</p>
+                {timelineData?.map((condition, idx) => (
+                  <div key={condition.id}>
+                    {idx > 0 &&
+                      dayjs(condition.created_at).format("DD") !==
+                        dayjs(timelineData[idx - 1].created_at).format(
+                          "DD",
+                        ) && (
+                        <SubInfo className="text-center" color="default">
+                          {dayjs(condition.created_at).format("LL")}
+                        </SubInfo>
+                      )}
+                    <div className="inline-flex gap-2 items-end">
+                      <div className="px-4 py-1 rounded-lg bg-white shadow-md shadow-primary inline-block">
+                        <p>{point2emoji(condition.point)}</p>
+                        <p>{condition.comment}</p>
+                      </div>
+                      <SubInfo className="flex-none">
+                        {dayjs(condition.created_at).format("LT")}
+                      </SubInfo>
                     </div>
-                    <SubInfo color="subInfo" className="flex-none">
-                      {dayjs(condition.created_at).format("LT")}
-                    </SubInfo>
                   </div>
                 ))}
               </div>
