@@ -9,7 +9,7 @@ export const Footer = () => {
   const pathname = usePathname();
 
   return (
-    <footer className="flex w-full justify-between border-t-border border-t px-4 py-2">
+    <footer className="flex w-full justify-between border-t-border border-t px-4 py-2 sticky bottom-0 z-10 bg-white">
       <Button
         variant="ghost"
         size="icon"

@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 type Text = JSX.IntrinsicElements["p"] & {
   children: ReactNode;
   bold?: boolean;
-  color?: "default" | "danger";
+  color?: "default" | "danger" | "subInfo";
 };
 
 export const DefaultText: FC<Text> = ({
@@ -16,6 +16,8 @@ export const DefaultText: FC<Text> = ({
     switch (color) {
       case "danger":
         return "danger";
+      case "subInfo":
+        return "subInfo";
       default:
         return "black";
     }
@@ -32,3 +34,20 @@ export const DefaultText: FC<Text> = ({
     </p>
   );
 };
+
+export const SectionTitle: FC<Text> = ({ children, className, ...props }) => {
+  return (
+    <DefaultText bold className={`text-2xl ${className}`} {...props}>
+      {children}
+    </DefaultText>
+  );
+};
+
+export const SubInfo: FC<Text> = ({ children, className, color = "subInfo", ...props }) => {
+  return (
+    <DefaultText bold className={`text-xs ${className}`} color={color} {...props}>
+      {children}
+    </DefaultText>
+  );
+};
+
