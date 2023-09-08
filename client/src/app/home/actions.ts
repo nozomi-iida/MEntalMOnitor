@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { revalidatePath } from "next/cache";
 import { Database } from "@/lib/schema.gen";
+import { pagesPath } from "@/lib/pathpida/$path";
 
 type AddCondition = {
   point: number;
@@ -22,5 +23,5 @@ export const addCondition = async ({ point, comment }: AddCondition) => {
     user_id: user.id,
   });
 
-  revalidatePath("/home");
+  revalidatePath(pagesPath.home.$url().pathname);
 };
