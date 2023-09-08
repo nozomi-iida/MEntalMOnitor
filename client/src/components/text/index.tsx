@@ -12,22 +12,17 @@ export const DefaultText: FC<Text> = ({
   className,
   ...props
 }) => {
-  const textColor = (() => {
-    switch (color) {
-      case "danger":
-        return "danger";
-      case "subInfo":
-        return "subInfo";
-      default:
-        return "black";
-    }
-  })();
+  const colorMap = {
+    subInfo: "subInfo",
+    danger: "danger",
+    default: "black",
+  };
 
   return (
     <p
-      className={`${
-        bold ? "font-semibold" : "font-normal"
-      } text-${textColor} ${className}`}
+      className={`${bold ? "font-semibold" : "font-normal"} text-${
+        colorMap[color]
+      } ${className}`}
       {...props}
     >
       {children}
@@ -43,11 +38,20 @@ export const SectionTitle: FC<Text> = ({ children, className, ...props }) => {
   );
 };
 
-export const SubInfo: FC<Text> = ({ children, className, color = "subInfo", ...props }) => {
+export const SubInfo: FC<Text> = ({
+  children,
+  className,
+  color = "subInfo",
+  ...props
+}) => {
   return (
-    <DefaultText bold className={`text-xs ${className}`} color={color} {...props}>
+    <DefaultText
+      bold
+      className={`text-xs ${className}`}
+      color={color}
+      {...props}
+    >
       {children}
     </DefaultText>
   );
 };
-
