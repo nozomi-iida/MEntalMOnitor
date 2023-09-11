@@ -1,7 +1,8 @@
-import { Header } from "@/components/header";
 import { AuthLayout } from "@/components/layout/authLayout";
 import { SignOutButton } from "./signOutButton";
 import { PageLayout } from "@/components/pageLayout";
+
+export const dynamic = "force-dynamic";
 
 const SettingsPage = async () => {
   return (

@@ -12,6 +12,8 @@ import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(localizedFormat);
 
+export const dynamic = "force-dynamic";
+
 const HomePage = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
   const today = new Date();
