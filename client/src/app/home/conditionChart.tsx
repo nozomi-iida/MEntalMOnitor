@@ -26,9 +26,13 @@ enum Period {
 
 type ConditionChrtProps = {
   conditions: Condition[];
+  className?: string;
 };
 
-export const ConditionChrt: FC<ConditionChrtProps> = ({ conditions }) => {
+export const ConditionChrt: FC<ConditionChrtProps> = ({
+  conditions,
+  className,
+}) => {
   const [period, _setPeriod] = useState<Period>(Period.Day);
   // const [date, setDate] = useState<Date>(new Date());
   const xTickFormatter = (date: string) => {
@@ -63,13 +67,13 @@ export const ConditionChrt: FC<ConditionChrtProps> = ({ conditions }) => {
         emoji = "😭";
         break;
       default:
-        emoji = "";
+        emoji = value.toString();
     }
     return emoji;
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${className}`}>
       {/* <div className="flex justify-end gap-4"> */}
       {/*   <div className="flex items-center gap-2"> */}
       {/*     <p>From: </p> */}

@@ -7,12 +7,14 @@ import { Database } from "@/lib/schema.gen";
 import { cookies } from "next/headers";
 import { SectionTitle, SubInfo } from "@/components/text";
 import { point2emoji } from "@/utils/helpers";
+import { AiOutlineRight } from "react-icons/ai";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(localizedFormat);
 
 const HomePage = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
+  const today = new Date();
   const todayStart = new Date();
   todayStart.setHours(0, 0, 0, 0);
   const todayEnd = new Date();
@@ -25,14 +27,21 @@ const HomePage = async () => {
   const { data: timelineData } = await supabase
     .from("conditions")
     .select()
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .gte("created_at", todayStart.toISOString())
+    .lte("created_at", todayEnd.toISOString());
+
   return (
     <AuthLayout>
       <PageLayout>
         <PageLayout.Header />
         <PageLayout.Content>
           <div className="flex flex-col gap-6">
-            <ConditionChrt conditions={data ?? []} />
+            <SectionTitle>{dayjs(today).format("LL")}</SectionTitle>
+            <div className="flex">
+              <ConditionChrt conditions={data ?? []} />
+              <AiOutlineRight />
+            </div>
             <div className="flex flex-col gap-4">
               <SectionTitle>Timeline</SectionTitle>
               <div className="flex flex-col gap-2">
@@ -43,7 +52,7 @@ const HomePage = async () => {
                         dayjs(timelineData[idx - 1].created_at).format(
                           "DD",
                         ) && (
-                        <SubInfo className="text-center" color="default">
+                        <SubInfo className="text-center py-2" color="default">
                           {dayjs(condition.created_at).format("LL")}
                         </SubInfo>
                       )}
