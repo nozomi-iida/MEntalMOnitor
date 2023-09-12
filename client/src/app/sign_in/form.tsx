@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 export const SignInForm = () => {
   const router = useRouter();
   const supabase = createClientComponentClient();
+  console.log(location);
   const onGoogleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
