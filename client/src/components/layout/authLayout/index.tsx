@@ -2,6 +2,7 @@ import { FC, ReactNode } from "react";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { pagesPath } from "@/lib/pathpida/$path";
 
 type AuthLayoutProps = {
   children: ReactNode;
@@ -13,7 +14,7 @@ export const AuthLayout: FC<AuthLayoutProps> = async ({ children }) => {
     data: { session },
   } = await supabase.auth.getSession();
   if (!session) {
-    redirect("/sign_in");
+    redirect(pagesPath.sign_in.$url().pathname);
   }
 
   return <>{children}</>;

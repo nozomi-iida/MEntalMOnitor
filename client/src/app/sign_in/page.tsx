@@ -4,6 +4,7 @@ import { SignInForm } from "./form";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { pagesPath } from "@/lib/pathpida/$path";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,7 @@ const SignInPage = async () => {
     data: { session },
   } = await supabase.auth.getSession();
   if (session) {
-    redirect("/home");
+    redirect(pagesPath.home.$url().pathname);
   }
 
   return (
