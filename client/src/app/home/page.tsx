@@ -41,7 +41,7 @@ const HomePage = async () => {
           <div className="flex flex-col gap-6">
             <SectionTitle>{dayjs(today).format("LL")}</SectionTitle>
             <div className="flex">
-              <ConditionChrt conditions={data ?? []} />
+              <ConditionChrt conditions={data ?? []} className="flex-auto" />
               <AiOutlineRight />
             </div>
             <div className="flex flex-col gap-4">

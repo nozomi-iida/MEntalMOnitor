@@ -10,7 +10,8 @@ export const SignInForm = () => {
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // redirectTo: `${location.origin}/api/auth/callback`,
+        redirectTo: `${location.origin}/api/auth/callback/`,
+        // redirectTo: "https://mental-monitor.vercel.app/api/auth/callback",
         queryParams: {
           prompt: "consent",
         },
