@@ -10,10 +10,7 @@ type AddCondition = {
   comment: string;
 };
 export const addCondition = async ({ point, comment }: AddCondition) => {
-  const cookieStore = cookies();
-  const supabase = createServerActionClient<Database>({
-    cookies: () => cookieStore,
-  });
+  const supabase = createServerActionClient<Database>({ cookies });
   const {
     data: { user },
   } = await supabase.auth.getUser();
