@@ -11,7 +11,6 @@ export const SignInForm = () => {
       provider: "google",
       options: {
         redirectTo: `${location.origin}/api/auth/callback/`,
-        // redirectTo: "https://mental-monitor.vercel.app/api/auth/callback",
         queryParams: {
           prompt: "consent",
         },
