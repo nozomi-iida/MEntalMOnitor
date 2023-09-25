@@ -44,5 +44,11 @@
     "pathpida": "^0.22.0",
     "prettier": "3.0.2",
     "supabase": "^1.88.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@supabase/supabase-js": "2.24.0",
+      "@supabase/gotrue-js": "2.38.0"
+    }
   }
 }

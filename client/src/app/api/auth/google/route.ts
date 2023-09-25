@@ -12,11 +12,12 @@ export async function POST(request: NextRequest) {
   const { data } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
+      redirectTo: `${requestUrl.origin}/api/auth/callback/`,
       queryParams: {
         prompt: "consent",
       },
     },
   });
 
-  return NextResponse.redirect(`${requestUrl.origin}/api/auth/callback`);
+  return NextResponse.json({ data }, { status: 200 });
 }
